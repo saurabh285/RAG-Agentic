@@ -33,19 +33,32 @@ llm = load_llm()
 vectorstores, embedding_model = load_vectorstores()
 
 # === Keyword-Based Multi-Domain Routing ===
-def route_query_keywords(query):
-    query = query.lower()
-    finance_keywords = ["finance", "revenue", "investment", "profit", "budget", "net income", "expenses"]
-    marketing_keywords = ["marketing", "brand", "campaign", "ads", "promotion", "audience", "reach"]
 
-    matched_domains = []
-    if any(kw in query for kw in finance_keywords):
-        matched_domains.append("finance")
-    if any(kw in query for kw in marketing_keywords):
-        matched_domains.append("marketing")
-    if not matched_domains:
-        matched_domains.append("general")
-    return matched_domains
+
+@st.cache_resource
+def load_router_llm():
+    tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
+    return tokenizer, model
+
+router_tokenizer, router_model = load_router_llm()
+
+# === Routing using DistilBERT ===
+@st.cache_resource
+def get_label_encoder():
+    encoder = LabelEncoder()
+    encoder.fit(["finance", "marketing", "general"])
+    return encoder
+
+def route_query_llm(query):
+    encoder = get_label_encoder()
+    labels = encoder.classes_
+    inputs = router_tokenizer(query, return_tensors="pt", truncation=True, padding=True)
+    with torch.no_grad():
+        logits = router_model(**inputs).logits
+    probs = torch.softmax(logits, dim=1).numpy()[0]
+    predicted_idx = np.argmax(probs)
+    return labels[predicted_idx]
 
 # === Complexity Detection ===
 def is_complex(query: str) -> bool:
