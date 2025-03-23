@@ -64,7 +64,7 @@ agentic-rag-demo/
 │   └── general/
 ├── embed_documents.py  # FAISS vector store generator
 ├── generate_data.py    # Script to fetch or synthesize data
-├── vectorstores/       # Saved FAISS indexes (finance, marketing, general)
+
 
 ```
 
