@@ -1,0 +1,13 @@
+Simple Queries:
+1	What was our Q2 revenue?
+2	List the departments mentioned in the marketing reports.
+3	What is the HR policy on remote work?
+4	How many new campaigns launched last quarter?
+5	Mention one investment decision made by the finance team.
+
+Complex Queries:
+1	Compare the Q2 and Q3 financial performance across finance and marketing departments.
+2	Summarize the key financial trends and relate them to the recent marketing campaigns.
+3	What are the differences between finance and marketing goals in the last two quarters?
+4	Based on company announcements, what HR changes may impact marketing performance?
+5	Give a timeline of revenue-impacting decisions taken by the finance team in 2023.
