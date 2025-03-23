@@ -8,7 +8,7 @@ import google.generativeai as genai
 
 # === CONFIG ===
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAT5fHmGyC39x5-NR2blR2aeD0Q_-7sa54"  # Replace with your actual key or use secrets manager
+os.environ["GOOGLE_API_KEY"] = ""  # Replace with your actual key or use secrets manager
 
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 st.set_page_config(page_title="Agentic RAG (Multi-Domain with Gemini)", layout="wide")
