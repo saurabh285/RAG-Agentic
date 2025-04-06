@@ -1,24 +1,23 @@
-# Transformers & Embeddings
+# LLM + Embeddings
 transformers==4.37.2
 sentence-transformers==2.2.2
 accelerate==0.26.1
 
-# PyTorch (CPU build)
-torch==2.1.0+cpu
-torchaudio==2.1.0+cpu
-torchvision==0.16.0+cpu
---extra-index-url https://download.pytorch.org/whl/cpu
+# CPU versions only (Streamlit Cloud doesn't support CUDA)
+torch==2.1.0
+torchaudio==2.1.0
+torchvision==0.16.0
 
-# LangChain ecosystem (modular setup)
+# LangChain ecosystem
 langchain==0.1.14
 langchain-community==0.0.31
 langchain-huggingface==0.0.3
 
-# Vector store (tested FAISS version)
+# Vector store
 faiss-cpu==1.7.4
 
-# Web app framework
+# Streamlit app
 streamlit==1.33.0
 
-# ML utilities
+# ML utility
 scikit-learn==1.4.1.post1
